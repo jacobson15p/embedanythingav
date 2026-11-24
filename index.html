@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="EmbedAnythingAV: a single embedder that maps text, camera video, and LiDAR point clouds into one shared space for autonomous-driving retrieval.">
+  <meta name="keywords" content="EmbedAnythingAV, omnimodal embedding, retrieval, autonomous driving, LiDAR, video, Qwen3-VL">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EmbedAnythingAV: Omnimodal Embedding for Autonomous-Driving Retrieval</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://jacobson15p.github.io">
+        <span class="icon">
+          <i class="fas fa-home"></i>
+        </span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">EmbedAnythingAV: Omnimodal Embedding for Autonomous-Driving Retrieval</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://jacobson15p.github.io">Philip Jacobson</a><sup>1</sup></span>
+            <!-- TODO: add co-authors, e.g.
+            <span class="author-block">
+              <a href="https://example.com">First Last</a><sup>1</sup>,</span>
+            -->
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <!-- TODO: affiliations -->
+            <span class="author-block"><sup>1</sup>Affiliation</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- TODO: uncomment once the paper is public.
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/XXXX.XXXXX"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/XXXX.XXXXX"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              -->
+              <!-- TODO: uncomment once the code is public.
+              <span class="link-block">
+                <a href="https://github.com/jacobson15p/REPO"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code</span>
+                </a>
+              </span>
+              -->
+              <span class="link-block">
+                <a href="#demo"
+                   class="button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-video"></i></span>
+                  <span>Demo</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser" id="demo">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video id="teaser" controls muted playsinline preload="metadata" width="100%">
+        <source src="./static/videos/demo.mp4" type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">EmbedAnythingAV</span> retrieves driving scenes across text, camera
+        video, and LiDAR: any modality can query any other.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <!-- TODO: replace this draft (adapted from the repo README) with the paper abstract. -->
+          <p>
+            We present <span class="dnerf">EmbedAnythingAV</span>, a contrastive retrieval
+            embedder for autonomous-driving data that maps <b>text</b>, <b>camera video</b>, and
+            <b>LiDAR point clouds</b> into a single shared vector space.
+            Built on top of Qwen3-VL-Embedding and trained with in-batch-negative InfoNCE, a single
+            model supports text&rarr;video, text&rarr;LiDAR, text&rarr;(video+LiDAR), and text-free
+            cross-modal retrieval, so any modality can retrieve any other.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Method. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Method</h2>
+        <div class="content has-text-centered">
+          <img src="./static/images/architecture.png"
+               alt="Overview of the EmbedAnythingAV architecture."
+               style="max-width: 100%;"/>
+          <p><i>Overview of the EmbedAnythingAV architecture.</i></p>
+        </div>
+        <div class="content has-text-justified">
+          <!-- TODO: expand. -->
+          <p>
+            The system is one embedder with several modality paths. LiDAR point clouds are encoded
+            by a frozen point-cloud feature extractor (Utonia) and injected into the Qwen3-VL
+            backbone through a learned projector; camera video and text use the backbone's native
+            inputs. Every path
+            produces an L2-normalized vector via last-token pooling over the same backbone, so a
+            dot product is a cross-modal similarity.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Method. -->
+
+    <!-- Results. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Results</h2>
+        <div class="content has-text-justified">
+          <!-- TODO: retrieval results tables / qualitative examples. -->
+          <p>Coming soon.</p>
+        </div>
+      </div>
+    </div>
+    <!--/ Results. -->
+  </div>
+</section>
+
+
+<!-- TODO: uncomment once there is a citation.
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{jacobson2026embedanythingav,
+  author    = {Jacobson, Philip and ...},
+  title     = {EmbedAnythingAV: Omnimodal Embedding for Autonomous-Driving Retrieval},
+  journal   = {arXiv preprint arXiv:XXXX.XXXXX},
+  year      = {2026},
+}</code></pre>
+  </div>
+</section>
+-->
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link" href="https://github.com/jacobson15p" class="external-link">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            Website template borrowed from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
