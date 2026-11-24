@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="EmbedAnythingAV: a single embedder that maps text, camera video, and LiDAR point clouds into one shared space for autonomous-driving retrieval.">
-  <meta name="keywords" content="EmbedAnythingAV, omnimodal embedding, retrieval, autonomous driving, LiDAR, video, Qwen3-VL">
+        content="EmbedAnythingAV: an omnimodal embedding model that maps text, camera video, LiDAR, radar, and ego trajectories into one shared space for autonomous-driving retrieval.">
+  <meta name="keywords" content="EmbedAnythingAV, omnimodal embedding, retrieval, autonomous driving, LiDAR, radar, video, trajectory, Qwen3-VL">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>EmbedAnythingAV: Omnimodal Embedding for Autonomous-Driving Retrieval</title>
 
@@ -28,26 +28,6 @@
 </head>
 <body>
 
-<nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-  <div class="navbar-menu">
-    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-      <a class="navbar-item" href="https://jacobson15p.github.io">
-        <span class="icon">
-          <i class="fas fa-home"></i>
-        </span>
-      </a>
-    </div>
-  </div>
-</nav>
-
-
 <section class="hero">
   <div class="hero-body">
     <div class="container is-max-desktop">
@@ -56,50 +36,54 @@
           <h1 class="title is-1 publication-title">EmbedAnythingAV: Omnimodal Embedding for Autonomous-Driving Retrieval</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              <a href="https://jacobson15p.github.io">Philip Jacobson</a><sup>1</sup></span>
-            <!-- TODO: add co-authors, e.g.
+              <a href="https://scholar.google.com/citations?user=3yQFuR4AAAAJ&hl=en">Philip Jacobson</a><sup>1,*</sup>,</span>
             <span class="author-block">
-              <a href="https://example.com">First Last</a><sup>1</sup>,</span>
-            -->
+              <a href="https://scholar.google.com/citations?user=2A79H_UAAAAJ&hl=zh-CN">Xin Ye</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://jiamingliu-jeremy.github.io/">Jiaming Liu</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://sungheonpark.github.io/">Sungheon Park</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://www.linkedin.com/in/xinyue-wang">Xinyue Wang</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://www.linkedin.com/in/zhenli3">Zhen Li</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://www.linkedin.com/in/yimeng-zhang-04144127">Yimeng Zhang</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://byaman14.github.io/">Burhan Yaman</a><sup>1</sup></span>
           </div>
 
           <div class="is-size-5 publication-authors">
-            <!-- TODO: affiliations -->
-            <span class="author-block"><sup>1</sup>Affiliation</span>
+            <span class="author-block"><sup>1</sup>Uber AV Labs</span>
+          </div>
+
+          <div class="is-size-6 publication-authors">
+            <span class="author-block"><sup>*</sup>Corresponding author:
+              <a href="mailto:philip.jacobson@uber.com">philip.jacobson@uber.com</a></span>
           </div>
 
           <div class="column has-text-centered">
             <div class="publication-links">
-              <!-- TODO: uncomment once the paper is public.
+              <!-- TODO: fill in the href="#" links below. -->
               <span class="link-block">
-                <a href="https://arxiv.org/pdf/XXXX.XXXXX"
+                <a href="#"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon"><i class="fas fa-file-pdf"></i></span>
                   <span>Paper</span>
                 </a>
               </span>
               <span class="link-block">
-                <a href="https://arxiv.org/abs/XXXX.XXXXX"
+                <a href="#"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon"><i class="ai ai-arxiv"></i></span>
                   <span>arXiv</span>
                 </a>
               </span>
-              -->
-              <!-- TODO: uncomment once the code is public.
               <span class="link-block">
-                <a href="https://github.com/jacobson15p/REPO"
+                <a href="#"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon"><i class="fab fa-github"></i></span>
                   <span>Code</span>
-                </a>
-              </span>
-              -->
-              <span class="link-block">
-                <a href="#demo"
-                   class="button is-normal is-rounded is-dark">
-                  <span class="icon"><i class="fas fa-video"></i></span>
-                  <span>Demo</span>
                 </a>
               </span>
             </div>
@@ -110,15 +94,16 @@
   </div>
 </section>
 
-<section class="hero teaser" id="demo">
+<section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <video id="teaser" controls muted playsinline preload="metadata" width="100%">
-        <source src="./static/videos/demo.mp4" type="video/mp4">
-      </video>
+      <img id="teaser" src="./static/images/teaser.png"
+           alt="EmbedAnythingAV embeds text, camera video, LiDAR, radar, and ego trajectory into a unified driving embedding for cross-modal retrieval."
+           style="width: 100%;"/>
       <h2 class="subtitle has-text-centered">
-        <span class="dnerf">EmbedAnythingAV</span> retrieves driving scenes across text, camera
-        video, and LiDAR: any modality can query any other.
+        <span class="dnerf">EmbedAnythingAV</span> embeds text, camera video, LiDAR, radar, and
+        ego trajectories into a single unified driving embedding, enabling semantic retrieval
+        of every sensor modality.
       </h2>
     </div>
   </div>
@@ -134,12 +119,17 @@
         <div class="content has-text-justified">
           <!-- TODO: replace this draft (adapted from the repo README) with the paper abstract. -->
           <p>
-            We present <span class="dnerf">EmbedAnythingAV</span>, a contrastive retrieval
-            embedder for autonomous-driving data that maps <b>text</b>, <b>camera video</b>, and
-            <b>LiDAR point clouds</b> into a single shared vector space.
-            Built on top of Qwen3-VL-Embedding and trained with in-batch-negative InfoNCE, a single
-            model supports text&rarr;video, text&rarr;LiDAR, text&rarr;(video+LiDAR), and text-free
-            cross-modal retrieval, so any modality can retrieve any other.
+            Mining large-scale driving logs plays a key role in the development and evaluation of models for autonomous driving. 
+            Multimodal embedding models are an attractive solution for this task, directly embedding raw video clips into a shared semantic latent space, allowing for straightforward semantic search. 
+            However, existing models primarily support conventional modalities, leaving critical autonomous driving sensor modalities, such as LiDAR and radar, unsupported. 
+            To address this gap, we introduce EmbedAnythingAV, the first demonstration of how to extend a general-purpose embedding model to novel LiDAR, radar and ego trajectory modalities for autonomous driving. 
+            Building on Qwen3-VL-Embedding, we extend its architecture with dedicated LiDAR and radar processing streams, leveraging modality-specific encoders and tokenization schemes to generate ingestible point cloud representations for the model backbone. 
+            Ego trajectories are incorporated through an engineered template structure that transforms the trajectories into a text sequence that is compatible with the existing text encoder. 
+            To accommodate differing levels of language supervision within driving data, we investigate two training strategies for EmbedAnythingAV: supervised contrastive learning, 
+            in which new modalities are directly supervised with text descriptions, and video-mediated contrastive learning, in which video is exploited as a bridge modality through LiDAR-video and radar-video contrastive learning. 
+            To evaluate our model's capabilities, we construct two retrieval benchmarks from the nuReasoning and CASCADE datasets, supporting text-to-video, text-to-LiDAR, text-to-trajectory, and, for CASCADE, text-to-radar retrieval. 
+            On these benchmarks, we demonstrate (1) successful semantic retrieval of the novel sensor modalities, achieving up to 86% of the video retrieval score for LiDAR and up to 56% for radar and 
+            (2) improvement over the video-only baseline using a linear late fusion scheme to combine multiple modality embeddings.
           </p>
         </div>
       </div>
@@ -156,20 +146,28 @@
       <div class="column is-full-width">
         <h2 class="title is-3">Method</h2>
         <div class="content has-text-centered">
-          <img src="./static/images/architecture.png"
-               alt="Overview of the EmbedAnythingAV architecture."
+          <img src="./static/images/method.png"
+               alt="EmbedAnythingAV architecture: modality tokenizers, Qwen3-VL embedding backbone, and contrastive training into a shared embedding space."
                style="max-width: 100%;"/>
-          <p><i>Overview of the EmbedAnythingAV architecture.</i></p>
+          <p><i>Overview of the EmbedAnythingAV architecture and training recipe.</i></p>
         </div>
         <div class="content has-text-justified">
-          <!-- TODO: expand. -->
+          <!-- TODO: draft based on the figure; revise as needed. -->
           <p>
-            The system is one embedder with several modality paths. LiDAR point clouds are encoded
-            by a frozen point-cloud feature extractor (Utonia) and injected into the Qwen3-VL
-            backbone through a learned projector; camera video and text use the backbone's native
-            inputs. Every path
-            produces an L2-normalized vector via last-token pooling over the same backbone, so a
-            dot product is a cross-modal similarity.
+            Each modality is converted into tokens for a shared Qwen3-VL-Embedding backbone. Text
+            and camera video use the backbone's native text tokenizer and SigLIP vision encoder.
+            LiDAR point clouds are encoded by a frozen Utonia point-cloud encoder and radar by a
+            frozen RadarDistill BEV pillar backbone, each followed by a trained projector that maps
+            features into the backbone's token space. Ego trajectories are written out as numeric
+            text and use the text path directly. Every modality produces an L2-normalized embedding
+            via last-token pooling, so a dot product is a cross-modal similarity.
+          </p>
+          <p>
+            The model is trained with an InfoNCE contrastive loss, either against captions
+            (text-contrastive) or, when captions are unavailable, against co-recorded video
+            (video-contrastive), which lets the sensor projectors train on unlabelled driving logs.
+            At retrieval time, embeddings from multiple modalities can optionally be combined by
+            late fusion.
           </p>
         </div>
       </div>
