@@ -18,7 +18,6 @@
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon" href="./static/images/favicon.svg">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
@@ -50,7 +49,7 @@
             <span class="author-block">
               <a href="https://www.linkedin.com/in/yimeng-zhang-04144127">Yimeng Zhang</a><sup>1</sup>,</span>
             <span class="author-block">
-              <a href="https://byaman14.github.io/">Burhan Yaman</a><sup>1</sup></span>
+              <a href="https://byaman14.github.io/">Burhan Yaman</a><sup>1,&dagger;</sup></span>
           </div>
 
           <div class="is-size-5 publication-authors">
@@ -58,8 +57,9 @@
           </div>
 
           <div class="is-size-6 publication-authors">
-            <span class="author-block"><sup>*</sup>Corresponding author:
-              <a href="mailto:philip.jacobson@uber.com">philip.jacobson@uber.com</a></span>
+            <span class="author-block"><sup>*</sup>Corresponding author</span>
+            &nbsp;&nbsp;
+            <span class="author-block"><sup>&dagger;</sup>Project lead</span>
           </div>
 
           <div class="column has-text-centered">
@@ -178,9 +178,132 @@
     <div class="columns is-centered">
       <div class="column is-full-width">
         <h2 class="title is-3">Results</h2>
-        <div class="content has-text-justified">
-          <!-- TODO: retrieval results tables / qualitative examples. -->
-          <p>Coming soon.</p>
+        <div class="content has-text-centered">
+          <div class="table-container">
+            <table class="table is-hoverable is-narrow results-table">
+              <thead>
+                <tr>
+                  <th class="approach">Approach</th>
+                  <th>Modalities</th>
+                  <th>MRR</th>
+                  <th>R@1</th>
+                  <th>R@5</th>
+                  <th>R@10</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="approach">EmbeddingGemma-2</td>
+                  <td>Video</td>
+                  <td>0.112</td><td>0.053</td><td>0.158</td><td>0.218</td>
+                </tr>
+                <tr>
+                  <td class="approach">Qwen3-VL-Embedding-2B</td>
+                  <td>Video</td>
+                  <td>0.147</td><td>0.084</td><td>0.194</td><td>0.274</td>
+                </tr>
+                <tr>
+                  <td class="approach">Qwen3-VL-Embedding-8B</td>
+                  <td>Video</td>
+                  <td>0.227</td><td>0.137</td><td>0.315</td><td>0.400</td>
+                </tr>
+                <tr>
+                  <td class="approach">WeMM-9B</td>
+                  <td>Video</td>
+                  <td>0.297</td><td>0.188</td><td>0.399</td><td>0.514</td>
+                </tr>
+                <tr class="ours-first">
+                  <td rowspan="6" class="approach ours-label">EmbedAnythingAV-S</td>
+                  <td>Video</td>
+                  <td>0.666</td><td>0.540</td><td>0.834</td><td>0.908</td>
+                </tr>
+                <tr>
+                  <td>LiDAR</td>
+                  <td>0.484</td><td>0.336</td><td>0.669</td><td>0.782</td>
+                </tr>
+                <tr>
+                  <td>Trajectory</td>
+                  <td>0.029</td><td>0.008</td><td>0.023</td><td>0.048</td>
+                </tr>
+                <tr>
+                  <td>LiDAR, Video</td>
+                  <td>0.675</td><td><b>0.551</b></td><td>0.846</td><td>0.906</td>
+                </tr>
+                <tr>
+                  <td>Trajectory, Video</td>
+                  <td>0.665</td><td>0.539</td><td>0.831</td><td><b>0.910</b></td>
+                </tr>
+                <tr>
+                  <td>Trajectory, LiDAR, Video</td>
+                  <td><b>0.676</b></td><td>0.549</td><td><b>0.852</b></td><td>0.909</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p><i>Retrieval results on the nuReasoning retrieval benchmark, encompassing zero-shot, single-modal, and fused performance.</i></p>
+          <br/>
+          <div class="table-container">
+            <table class="table is-hoverable is-narrow results-table">
+              <thead>
+                <tr>
+                  <th class="approach">Approach</th>
+                  <th>Modalities</th>
+                  <th>mAP</th>
+                  <th>R-Precision</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="approach">EmbeddingGemma-2</td>
+                  <td>Video</td>
+                  <td>0.075</td><td>0.074</td>
+                </tr>
+                <tr>
+                  <td class="approach">Qwen3-VL-Embedding-2B</td>
+                  <td>Video</td>
+                  <td>0.089</td><td>0.088</td>
+                </tr>
+                <tr>
+                  <td class="approach">Qwen3-VL-Embedding-8B</td>
+                  <td>Video</td>
+                  <td>0.111</td><td>0.114</td>
+                </tr>
+                <tr class="ours-first">
+                  <td rowspan="6" class="approach ours-label">EmbedAnythingAV-U</td>
+                  <td>LiDAR</td>
+                  <td>0.096</td><td>0.097</td>
+                </tr>
+                <tr>
+                  <td>Radar</td>
+                  <td>0.063</td><td>0.064</td>
+                </tr>
+                <tr>
+                  <td>Trajectory</td>
+                  <td>0.042</td><td>0.036</td>
+                </tr>
+                <tr>
+                  <td>Video, LiDAR</td>
+                  <td><b>0.115</b></td><td><b>0.117</b></td>
+                </tr>
+                <tr>
+                  <td>Video, Radar</td>
+                  <td>0.113</td><td>0.114</td>
+                </tr>
+                <tr>
+                  <td>Video, Trajectory</td>
+                  <td><b>0.115</b></td><td>0.115</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p><i>Retrieval results using the CASCADE dataset validation queries.</i></p>
+        </div>
+        <h3 class="title is-4">Qualitative results</h3>
+        <div class="content has-text-centered">
+          <img src="./static/images/lidar_retrieval_qualitative.jpg"
+               alt="Text-to-LiDAR retrieval: a text query describing a work zone with the ego vehicle following a bus, and the top-5 retrieved LiDAR clips with cosine similarities; the ground-truth clip is ranked first."
+               style="max-width: 100%;"/>
+          <p><i>Text &rarr; LiDAR retrieval: top-5 retrieved LiDAR clips for a text query, shown with cosine similarity and each clip's own scene label. The ground-truth clip is ranked first.</i></p>
         </div>
       </div>
     </div>

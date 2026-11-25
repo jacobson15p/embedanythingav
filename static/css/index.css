@@ -155,3 +155,26 @@ body {
 #interpolation-image-wrapper img {
   border-radius: 5px;
 }
+
+.results-table {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.results-table th,
+.results-table td {
+  text-align: center !important;
+  vertical-align: middle !important;
+}
+
+.results-table .approach {
+  text-align: left !important;
+}
+
+.results-table tr.ours-first td {
+  border-top: 2px solid #363636;
+}
+
+.results-table .ours-label {
+  font-weight: bold;
+}
