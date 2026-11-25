@@ -178,6 +178,28 @@
     <div class="columns is-centered">
       <div class="column is-full-width">
         <h2 class="title is-3">Results</h2>
+        <div class="content has-text-justified">
+          <!-- TODO: draft; check the -S / -U descriptions and the claims below. -->
+          <p>
+            We evaluate text-to-scene retrieval on two benchmarks built from the nuReasoning and
+            CASCADE datasets, comparing against zero-shot, video-only embedding models.
+          </p>
+          <p>
+            On <b>nuReasoning</b>, EmbedAnythingAV-S, trained with supervised contrastive learning,
+            more than doubles the MRR of the strongest zero-shot video baseline (0.666 vs. 0.297 for
+            WeMM-9B). The new sensor modalities are directly searchable from text: LiDAR alone
+            reaches 0.484 MRR and 0.782 R@10, compared to 0.908 R@10 for video. Trajectory alone is
+            much weaker on these scene-level queries (0.029 MRR). Fusing LiDAR with video
+            improves on video alone in MRR, R@1, and R@5, with the best R@1 (0.551); combining
+            trajectory, LiDAR, and video gives the best MRR (0.676) and R@5 (0.852).
+          </p>
+          <p>
+            On <b>CASCADE</b>, EmbedAnythingAV-U, trained with video-mediated contrastive learning,
+            retrieves LiDAR and radar from text with 0.096 and 0.063 mAP, compared to 0.111 for the
+            strongest video-only baseline. Every fused combination matches or exceeds all video-only
+            baselines, with video + LiDAR achieving the best R-Precision (0.117).
+          </p>
+        </div>
         <div class="content has-text-centered">
           <div class="table-container">
             <table class="table is-hoverable is-narrow results-table">
@@ -299,11 +321,29 @@
           <p><i>Retrieval results using the CASCADE dataset validation queries.</i></p>
         </div>
         <h3 class="title is-4">Qualitative results</h3>
+        <div class="content has-text-justified">
+          <p>
+            Below we show the top-5 retrievals for text queries against LiDAR, radar, and ego
+            trajectory clips.
+          </p>
+        </div>
         <div class="content has-text-centered">
           <img src="./static/images/lidar_retrieval_qualitative.jpg"
-               alt="Text-to-LiDAR retrieval: a text query describing a work zone with the ego vehicle following a bus, and the top-5 retrieved LiDAR clips with cosine similarities; the ground-truth clip is ranked first."
+               alt="Text-to-LiDAR retrieval on nuReasoning: a text query describing a work zone with the ego vehicle following a bus, and the top-5 retrieved LiDAR clips with cosine similarities; the ground-truth clip is ranked first."
                style="max-width: 100%;"/>
-          <p><i>Text &rarr; LiDAR retrieval: top-5 retrieved LiDAR clips for a text query, shown with cosine similarity and each clip's own scene label. The ground-truth clip is ranked first.</i></p>
+          <p><i>Text &rarr; LiDAR retrieval on nuReasoning: top-5 retrieved LiDAR clips for a text query, shown with cosine similarity and each clip's own scene label. The ground-truth clip is ranked first.</i></p>
+        </div>
+        <div class="content has-text-centered">
+          <img src="./static/images/radar_retrieval_qualitative.jpg"
+               alt="Text-to-radar retrieval on CASCADE: the query 'A person walks at the same time as a traffic light shows red' and the top-5 retrieved radar clips with camera reference frames, range-azimuth radar features, and clip annotations; four of the top five are matching clips."
+               style="max-width: 100%;"/>
+          <p><i>Text &rarr; radar retrieval on CASCADE: top-5 retrieved radar clips for a text query, shown with a reference camera frame, radar features over time, and each clip's annotation. CASCADE is many-to-many; matching clips are outlined in green.</i></p>
+        </div>
+        <div class="content has-text-centered">
+          <img src="./static/images/traj_retrieval_qualitative.jpg"
+               alt="Text-to-ego-trajectory retrieval on nuReasoning: the query 'turn right' and the top-5 retrieved clips with ego path, speed, and yaw-rate plots; all five are labelled matches."
+               style="max-width: 100%;"/>
+          <p><i>Text &rarr; ego-trajectory retrieval on nuReasoning: top-5 retrieved clips for a maneuver query, shown with the ego path, speed, and yaw rate over each clip, alongside the labelled driving decision. Matching clips are outlined in green.</i></p>
         </div>
       </div>
     </div>
